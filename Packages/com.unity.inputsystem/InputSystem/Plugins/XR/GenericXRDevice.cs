@@ -107,7 +107,8 @@ namespace UnityEngine.Experimental.Input.Plugins.XR
     public class XRControllerWithRumble : XRController, IHaptics
     {
         SimpleRumble m_Rumble;
-        BufferedRumble m_BufferedRumble;
+        // TODO TOMB: Temporarily public to test ideas quickly
+        public BufferedRumble m_BufferedRumble;
 
         protected override void FinishSetup(InputDeviceBuilder builder)
         {
