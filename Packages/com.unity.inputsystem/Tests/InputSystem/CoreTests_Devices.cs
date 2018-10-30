@@ -3374,8 +3374,8 @@ partial class CoreTests
     [Category("Devices")]
     public void Devices_IMECompositionEventsGoThroughKeyboard()
     {
-        const string imeCompositionCharacters = "CompositionTestCharacters! ɝ";
-        bool callbackWasCalled = false;
+        var imeCompositionCharacters = "CompositionTestCharacters! ɝ";
+        var callbackWasCalled = false;
 
         var keyboard = InputSystem.AddDevice<Keyboard>();
         keyboard.onIMECompositionChange += (IMECompositionString composition) =>
@@ -3385,7 +3385,7 @@ partial class CoreTests
             Assert.AreEqual(composition.ToString(), imeCompositionCharacters);
         };
 
-        IMECompositionEvent inputEvent = IMECompositionEvent.Create(keyboard.id, imeCompositionCharacters,
+        var inputEvent = IMECompositionEvent.Create(keyboard.id, imeCompositionCharacters,
             InputRuntime.s_Instance.currentTime);
         InputSystem.QueueEvent(ref inputEvent);
         InputSystem.Update();
@@ -3397,7 +3397,7 @@ partial class CoreTests
     [Category("Devices")]
     public void Devices_IMEEnableSendsCorrectIOCTLCommand()
     {
-        bool commandWasSent = false;
+        var commandWasSent = false;
 
         var keyboard = InputSystem.AddDevice<Keyboard>();
         unsafe
@@ -3427,7 +3427,7 @@ partial class CoreTests
     [Category("Devices")]
     public void Devices_IMECursorPositionSendsCorrectIOCTLCommand()
     {
-        bool commandWasSent = false;
+        var commandWasSent = false;
 
         var keyboard = InputSystem.AddDevice<Keyboard>();
 
@@ -3443,8 +3443,6 @@ partial class CoreTests
 
                         SetIMECursorPositionCommand command = *((SetIMECursorPositionCommand*)commandPtr);
                         Assert.AreEqual(Vector2.one, command.position);
-                        return InputDeviceCommand.kGenericSuccess;
-
                         return InputDeviceCommand.kGenericSuccess;
                     }
 

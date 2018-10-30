@@ -58,7 +58,7 @@ namespace UnityEngine.Experimental.Input
 
             public bool MoveNext()
             {
-                int size = m_CompositionString.Count;
+                var size = m_CompositionString.Count;
 
                 m_CurrentIndex++;
 
@@ -126,7 +126,9 @@ namespace UnityEngine.Experimental.Input
 
         public IMECompositionString(string characters)
         {
-            Debug.Assert(characters.Length < LowLevel.IMECompositionEvent.kIMECharBufferSize);
+            if (characters.Length < LowLevel.IMECompositionEvent.kIMECharBufferSize)
+                throw new ArgumentOutOfRangeException("characters", "Too many characters for an IMEComposition event.");
+
             size = characters.Length;
             fixed(char* ptr = buffer)
             {
