@@ -333,6 +333,19 @@ namespace UnityEngine.Experimental.Input.Plugins.HID
                     stateFormat = new FourCC('H', 'I', 'D'),
                 };
 
+
+                var triggerElement = Array.Find(hidDescriptor.elements, element => element.usagePage == UsagePage.Button && element.usage == 1);
+                //Since HIDElementDescriptor is a struct and not nullable, the easiest way to verify we found an element is to double check it's usage is what we were looking for.
+                if (triggerElement.usage == 1)
+                {
+                    builder.AddControl("trigger")
+                        .WithFormat(triggerElement.DetermineFormat())
+                        .WithLayout("Button")
+                        .WithBitOffset((uint)(triggerElement.reportOffsetInBits))
+                        .WithSizeInBits((uint)triggerElement.reportSizeInBits)
+                        .WithUsages(CommonUsages.PrimaryTrigger, CommonUsages.PrimaryAction);
+                }
+
                 var xElement = Array.Find(hidDescriptor.elements, element => element.usagePage == UsagePage.GenericDesktop && element.usage == (int)GenericDesktop.X);
                 var yElement = Array.Find(hidDescriptor.elements, element => element.usagePage == UsagePage.GenericDesktop && element.usage == (int)GenericDesktop.Y);
                 //Since HIDElementDescriptor is a struct and not nullable, the easiest way to verify we found an element is to double check it's usage is what we were looking for.
