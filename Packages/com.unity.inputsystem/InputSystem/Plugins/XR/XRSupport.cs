@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Layouts;
 
 namespace UnityEngine.InputSystem.XR
 {
-    static class XRUtilities
+    public static class XRUtilities
     {
         /// <summary>
         /// A simple Regex pattern that allows InputDeviceMatchers to match to any version of the XRInput interface.
@@ -116,58 +116,6 @@ namespace UnityEngine.InputSystem.XR
         {
             InputSystem.RegisterLayout<XRHMD>();
             InputSystem.RegisterLayout<XRController>();
-
-            InputSystem.RegisterLayout<WMRHMD>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("(Windows Mixed Reality HMD)|(Microsoft HoloLens)|(Acer AH100)|(Samsung Windows Mixed Reality 800ZAA)")
-            );
-            InputSystem.RegisterLayout<WMRSpatialController>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct(@"(^(Spatial Controller))|(^(OpenVR Controller\(WindowsMR))")
-            );
-            InputSystem.RegisterLayout<HololensHand>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct(@"(^(Hand -))")
-            );
-
-            InputSystem.RegisterLayout<OculusHMD>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithManufacturer("Oculus")
-                    .WithProduct("^(Oculus Rift)"));
-            InputSystem.RegisterLayout<OculusTouchController>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithManufacturer("Oculus")
-                    .WithProduct(@"((Oculus Touch Controller)|(^(OpenVR Controller\(Oculus Rift [a-zA-Z0-9]*)))"));
-            InputSystem.RegisterLayout<OculusRemote>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithManufacturer("Oculus")
-                    .WithProduct(@"Oculus Remote"));
-            InputSystem.RegisterLayout<OculusTrackingReference>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct(@"((Tracking Reference)|(^(Oculus Rift [a-zA-Z0-9]* \(Camera)))"));
-
-            InputSystem.RegisterLayout<OculusStandaloneHMDBase>(
-                name: "Oculus Go",
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("Oculus Go"));
-
-            InputSystem.RegisterLayout<OculusStandaloneHMDExtended>(
-                name: "GearVR",
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("Oculus HMD"));
-            InputSystem.RegisterLayout<GearVRTrackedController>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("^(Oculus Tracked Remote)"));
 
             InputSystem.RegisterLayout<DaydreamHMD>(
                 matches: new InputDeviceMatcher()
