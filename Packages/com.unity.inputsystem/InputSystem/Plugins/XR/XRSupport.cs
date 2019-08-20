@@ -117,15 +117,6 @@ namespace UnityEngine.InputSystem.XR
             InputSystem.RegisterLayout<XRHMD>();
             InputSystem.RegisterLayout<XRController>();
 
-            InputSystem.RegisterLayout<DaydreamHMD>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("Daydream HMD"));
-            InputSystem.RegisterLayout<DaydreamController>(
-                matches: new InputDeviceMatcher()
-                    .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
-                    .WithProduct("^(Daydream Controller)"));
-
             InputSystem.RegisterLayout<ViveHMD>(
                 matches: new InputDeviceMatcher()
                     .WithInterface(XRUtilities.kXRInterfaceMatchAnyVersion)
